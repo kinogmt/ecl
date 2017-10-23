@@ -6,7 +6,7 @@ RUN yum install -y git gtk3
 
 ADD sudoers /etc/sudoers.d/
 
-ENV ECLIPSE_URL='http://eclipse.mirror.rafal.ca/technology/epp/downloads/release/${ARG}/R/eclipse-java-${ARG}-R-linux-gtk-x86_64.tar.gz'
+ENV ECLIPSE_URL='http://eclipse.mirror.rafal.ca/technology/epp/downloads/release/${eclversion}/R/eclipse-java-${eclversion}-R-linux-gtk-x86_64.tar.gz'
 RUN mkdir -p /opt && curl $ECLIPSE_URL | tar -xvz -C /opt
 
 ##########################################################################
