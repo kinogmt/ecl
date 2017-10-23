@@ -1,0 +1,28 @@
+version: "2"
+services:
+  ecl:
+    image: quay.io/cloudian/centos-ssh:7-ecl
+    #image: psharkey/eclipse
+    hostname: ecl1
+    privileged: true
+    dns:
+      - 127.0.0.1
+      - 8.8.8.8
+    dns_search:
+      - localdomain
+    volumes:
+      - ~/work:/home/worker/work
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
+    user: worker
+    environment:
+      DISPLAY: ${DISPLAY}
+    networks:
+      net1:
+        ipv4_address: 10.1.2.2
+networks:
+  net1:
+    ipam:
+      config:
+        - subnet: 10.1.2.0/24
+          ip_range: 10.1.2.0/24
+          gateway: 10.1.2.1
